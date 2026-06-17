@@ -11,6 +11,7 @@ sudo chmod +x /home/agent-admin/agent-app/agent-leak-app-x86
 
 chmod +x run.sh
 
+정상작동
 ```
 cat << 'EOF' > /home/agent-admin/agent-app/run.sh
 #!/bin/bash
@@ -34,6 +35,67 @@ export CPU_MAX_OCCUPY=10            # ★ CPU 제한을 10%로 빡빡하게
 export MULTI_THREAD_ENABLE="false"  # ★ 싱글 스레드 모드 (데드락 회피)
 
 echo "✅ [run.sh] 환경변수 세팅 완료 (MEMORY: 512MB / CPU: 10% / THREAD: false)"
+echo "🚀 애플리케이션을 실행합니다..."
+
+chmod +x ./agent-leak-app-x86
+./agent-leak-app-x86
+EOF
+```
+
+DEAD LOCK
+```
+cat << 'EOF' > /home/agent-admin/agent-app/run.sh
+#!/bin/bash
+
+export AGENT_HOME="/home/agent-admin/agent-app"
+export AGENT_UPLOAD_DIR="$AGENT_HOME/upload_files"
+export AGENT_KEY_PATH="$AGENT_HOME/api_keys"
+export AGENT_LOG_DIR="$AGENT_HOME/logs"
+
+mkdir -p "$AGENT_UPLOAD_DIR"
+mkdir -p "$AGENT_KEY_PATH"
+mkdir -p "$AGENT_LOG_DIR"
+
+echo "agent_api_key_test" > "$AGENT_KEY_PATH/secret.key"
+chmod 600 "$AGENT_KEY_PATH/secret.key"
+
+# [환경변수 셋업] 
+export AGENT_PORT=15034
+export MEMORY_LIMIT=512             
+export CPU_MAX_OCCUPY=10            
+export MULTI_THREAD_ENABLE="true" 
+
+echo "✅ [run.sh] 환경변수 세팅 완료 (MEMORY: 512MB / CPU: 10% / THREAD: true)"
+echo "🚀 애플리케이션을 실행합니다..."
+
+chmod +x ./agent-leak-app-x86
+./agent-leak-app-x86
+EOF
+```
+OOM
+```
+cat << 'EOF' > /home/agent-admin/agent-app/run.sh
+#!/bin/bash
+
+export AGENT_HOME="/home/agent-admin/agent-app"
+export AGENT_UPLOAD_DIR="$AGENT_HOME/upload_files"
+export AGENT_KEY_PATH="$AGENT_HOME/api_keys"
+export AGENT_LOG_DIR="$AGENT_HOME/logs"
+
+mkdir -p "$AGENT_UPLOAD_DIR"
+mkdir -p "$AGENT_KEY_PATH"
+mkdir -p "$AGENT_LOG_DIR"
+
+echo "agent_api_key_test" > "$AGENT_KEY_PATH/secret.key"
+chmod 600 "$AGENT_KEY_PATH/secret.key"
+
+# [환경변수 셋업] 
+export AGENT_PORT=15034
+export MEMORY_LIMIT=50           
+export CPU_MAX_OCCUPY=10            
+export MULTI_THREAD_ENABLE="false"  
+
+echo "✅ [run.sh] 환경변수 세팅 완료 (MEMORY: 50MB / CPU: 10% / THREAD: false)"
 echo "🚀 애플리케이션을 실행합니다..."
 
 chmod +x ./agent-leak-app-x86
