@@ -102,3 +102,33 @@ chmod +x ./agent-leak-app-x86
 ./agent-leak-app-x86
 EOF
 ```
+CPU 과점유
+```
+cat << 'EOF' > /home/agent-admin/agent-app/run.sh
+#!/bin/bash
+
+export AGENT_HOME="/home/agent-admin/agent-app"
+export AGENT_UPLOAD_DIR="$AGENT_HOME/upload_files"
+export AGENT_KEY_PATH="$AGENT_HOME/api_keys"
+export AGENT_LOG_DIR="$AGENT_HOME/logs"
+
+mkdir -p "$AGENT_UPLOAD_DIR"
+mkdir -p "$AGENT_KEY_PATH"
+mkdir -p "$AGENT_LOG_DIR"
+
+echo "agent_api_key_test" > "$AGENT_KEY_PATH/secret.key"
+chmod 600 "$AGENT_KEY_PATH/secret.key"
+
+# [환경변수 셋업] 
+export AGENT_PORT=15034
+export MEMORY_LIMIT=512            
+export CPU_MAX_OCCUPY=100           
+export MULTI_THREAD_ENABLE="false"  
+
+echo "✅ [run.sh] 환경변수 세팅 완료 (MEMORY: 512MB / CPU: 100% / THREAD: false)"
+echo "🚀 애플리케이션을 실행합니다..."
+
+chmod +x ./agent-leak-app-x86
+./agent-leak-app-x86
+EOF
+```
