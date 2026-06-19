@@ -2,9 +2,7 @@
 
 백엔드 시스템 및 에이전트 애플리케이션의 \*\*3대 치명적 장애(OOM, CPU Spike, Deadlock)\*\*를 의도적으로 재현하고, 리눅스 OS 레벨에서 이를 진단 및 해결한 트러블슈팅 사후 분석(Post-Mortem) 리포지토리입니다.
 
-💡 상세한 장애 분석 보고서와 관제 데이터는 본 리포지토리의
-
-![][image1]탭에서 확인하실 수 있습니다.
+💡 상세한 장애 분석 보고서와 관제 데이터는 본 리포지토리 issues 탭에서 확인 가능합니다.
 
 ## **🛠 1\. 실행 환경 및 컨트롤 패널**
 
@@ -88,8 +86,6 @@ run.sh의 환경변수를 수정하여 아래 3가지 장애를 의도적으로 
 | top \-b \-d 0.1 \-n 100 \-p \[PID\] | 화면 새로고침 없이 0.1초 단위 100번 스냅샷을 텍스트로 기록(Dump) |
 
 | tail \-f logs/agent\_app.log | 애플리케이션 내부 다잉 메시지(BLOCKED 등) 실시간 스트리밍 |
-
-[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiwAAABMCAYAAABOHOyaAAAEC0lEQVR4Xu3cTaimYxgA4Dlnxr+Sn+PUOd8536/NCdGJHUkpIZFY2JC1hc1MNiiykEKRnxULSYmFprCyoYhiLGY5bFAmv6VhMOO+z3kfHs+cmcHqfF/XVU/nee77ft/3vKvv7nuf99uxAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/pvFxcWz2tisGwwGp7cxAGCb6vV6F/X7/bfaeIr4vhiHYhytxvdt3TSK+/ijjQEA21Q2IW2sVZqVNj6t4l7eXVtbO7WNAwDbVHx4v97GGru6huWTNjGtZqn5AoCZ1+v1zlhdXX07xnNtrojcnq5hubHNTau4l29ivN/GAYBt6mSPeyL304nynV2DweD+aG6eGo1Gq20yRXN0XpznkRgPR925dW5lZeXmiL0U0511PMxPJpPTmtiG5eXlXlzzhRj3xXKuzac45+0xXo1r3lDHyz3HsXfXcQBgm4pm4ar48L6zjRcna2iiEbkk8r/HdD7XMT+wtLR0QV0TsXtifFWtf63mj0bjcFc0Fg+11+mu/Uwdi0bl/C7+RCzn8g2n9rgUsSN5bzmP818T53+n5LpjHv+7GgCYZmX/ykdtosh8NATX5zxfFc71aDQ6p62JJubMnEfjcF3dYMT86+7vgabx2JnraDqWqlj5f/7RxDTH5TUejNiROh+xD+saAGBG5GOe7sP+pjZXdA1EjgeO9+ZNl/8txr1Nai5iw1KTj3hKIta720Yk1l/Usfi/1mP9cz5Saur2dud7M78BqnMAwIzp/4v9K7lht2tINkasn2xrIv5xXRPj1jo/HA6v7q6z8VgpxfrH9trdsYdzr0z83R2NyhV1viiPiarhN1cAYFaVD/w2Xvlrs2vUXXuc+rrmtq1q+ps/UNfGsu61LWJ769iJjMfjC/NRUB4Xzc3FbR4AmH4be0hifNom0mQyWch8NAR7Siw3z/arvSOxviVrhsPhlSUW9S9G/LOyTt11NvaydOa72OU5j2Oer+qeruo29Hq9SZl3Ncc0P/UaAJgR3WOX/PDf8g2iyN/RNBnZGPzSNRll/WyMfVVJ7lk5urCwcHYVy7r9dVMR84NlnQ3O+vr6KV38jbb56G++gbS/WufelcvKOuaPRezzsgYAZkDXPOTele9ifBvjh/7ma8vHiPgr2SB049BwOLx0i5oPqpqD+VpyW5My19XkK8/57c57uS7frlR1L1fn+zKu2a/z4/F4JeKHS002XnUeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4H/6E8Z+BzdD23ZJAAAAAElFTkSuQmCC>
 
 sudo cp /Users/herebattle6145/Downloads/agent-app-leak/agent-leak-app-x86 /home/agent-admin/agent-app/
 
