@@ -8,6 +8,7 @@
 
 애플리케이션(agent-leak-app-x86)의 동작 방식은 부팅 스크립트인 run.sh의 환경변수 조작을 통해 완벽하게 제어됩니다. 아래는 애플리케이션을 안정적으로 구동시키는 **Safe Mode** 기준의 스크립트입니다.
 
+```
 \#\!/bin/bash
 
 \# 1\. 디렉토리 셋업  
@@ -24,6 +25,7 @@ export MULTI\_THREAD\_ENABLE="false"  \# 멀티 스레드 (Deadlock 방어)
 echo "✅ \[run.sh\] 환경변수 세팅 완료"  
 chmod \+x ./agent-leak-app-x86  
 ./agent-leak-app-x86
+```
 
 ## **💥 2\. 장애 재현 (Reproduction) 시나리오**
 
