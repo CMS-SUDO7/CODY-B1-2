@@ -9,21 +9,21 @@
 애플리케이션(agent-leak-app-x86)의 동작 방식은 부팅 스크립트인 run.sh의 환경변수 조작을 통해 완벽하게 제어됩니다. 아래는 애플리케이션을 안정적으로 구동시키는 **Safe Mode** 기준의 스크립트입니다.
 
 ```
-\#\!/bin/bash
+#!/bin/bash
 
-\# 1\. 디렉토리 셋업  
-export AGENT\_HOME="/home/agent-admin/agent-app"  
-export AGENT\_LOG\_DIR="$AGENT\_HOME/logs"  
-mkdir \-p "$AGENT\_LOG\_DIR"
+# [디렉토리 셋업]
+export AGENT_HOME="/home/agent-admin/agent-app"
+export AGENT_LOG_DIR="$AGENT_HOME/logs"
+mkdir -p "$AGENT_LOG_DIR"
 
-\# 2\. 환경변수 셋업 (장애 제어 트리거)  
-export AGENT\_PORT=15034  
-export MEMORY\_LIMIT=512             \# 메모리 할당량 (누수 방어)  
-export CPU\_MAX\_OCCUPY=10            \# CPU 제한 (Spike 방어)  
-export MULTI\_THREAD\_ENABLE="false"  \# 멀티 스레드 (Deadlock 방어)
+# [환경변수 셋업 - 장애 제어 트리거] 
+export AGENT_PORT=15034
+export MEMORY_LIMIT=512             # 메모리 할당량 (누수 방어)
+export CPU_MAX_OCCUPY=10            # CPU 제한 (Spike 방어)
+export MULTI_THREAD_ENABLE="false"  # 멀티 스레드 (Deadlock 방어)
 
-echo "✅ \[run.sh\] 환경변수 세팅 완료"  
-chmod \+x ./agent-leak-app-x86  
+echo "✅ [run.sh] 환경변수 세팅 완료"
+chmod +x ./agent-leak-app-x86
 ./agent-leak-app-x86
 ```
 
